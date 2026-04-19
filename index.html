@@ -462,13 +462,18 @@
     btn.disabled = true;
 
     try {
-      const res = await fetch('https://formspree.io/f/mdaydkyq', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name, guests, attending, message })
+        body: JSON.stringify({
+          access_key: '3aa9ca14-8cfb-41f6-b208-7697159b71e1',
+          subject: "New RSVP — Lucas's 11th Birthday 🎉",
+          name, guests, attending, message
+        })
       });
 
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         document.getElementById('rsvp-form').style.display = 'none';
         document.getElementById('rsvp-success').style.display = 'block';
       } else {
