@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>You're Invited — Lucas's 11th Birthday</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -447,12 +448,18 @@
   }
   draw();
 
+  // ── Supabase ──
+  const _supabase = supabase.createClient(
+    'https://urxfibjfbzkcnxhyynpb.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVyeGZpYmpmYnprY254aHl5bnBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxNzEzNTAsImV4cCI6MjA4ODc0NzM1MH0.lSp8glpzDJXN71n4Cpa_MYj-Cp4SRqrJGUugtvGazIs'
+  );
+
   // ── RSVP ──
   async function submitRSVP() {
-    const name     = document.getElementById('rsvp-name').value.trim();
-    const guests   = document.getElementById('rsvp-guests').value;
+    const name      = document.getElementById('rsvp-name').value.trim();
+    const guests    = document.getElementById('rsvp-guests').value;
     const attending = document.getElementById('rsvp-attending').value;
-    const message  = document.getElementById('rsvp-message').value.trim();
+    const message   = document.getElementById('rsvp-message').value.trim();
 
     if (!name)      { alert('Please enter your name.'); return; }
     if (!attending) { alert('Please let us know if you can attend.'); return; }
@@ -462,6 +469,7 @@
     btn.disabled = true;
 
     try {
+      // Send email via Web3Forms
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -471,9 +479,12 @@
           name, guests, attending, message
         })
       });
-
       const data = await res.json();
+
       if (data.success) {
+        // Also save to Supabase
+        await _supabase.from('lucas_birthday_rsvps').insert({ name, guests, attending, message });
+
         const msgs = {
           yes:   { icon: '🎉', title: "You're on the list!", body: "Can't wait to see you there — it's going to be a great time!" },
           no:    { icon: '💙', title: "We'll miss you!", body: "Thanks for letting us know — we hope to celebrate with you another time." },
