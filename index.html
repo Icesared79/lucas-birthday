@@ -474,6 +474,17 @@
 
       const data = await res.json();
       if (data.success) {
+        const msgs = {
+          yes:   { icon: '🎉', title: "You're on the list!", body: "Can't wait to see you there — it's going to be a great time!" },
+          no:    { icon: '💙', title: "We'll miss you!", body: "Thanks for letting us know — we hope to celebrate with you another time." },
+          maybe: { icon: '🤞', title: "Got it — fingers crossed!", body: "No worries at all. Let us know when you know and we'll save you a spot!" }
+        };
+        const m = msgs[attending] || msgs.yes;
+        document.getElementById('rsvp-success').innerHTML = `
+          <div class="check">${m.icon}</div>
+          <h3>${m.title}</h3>
+          <p>${m.body}</p>
+        `;
         document.getElementById('rsvp-form').style.display = 'none';
         document.getElementById('rsvp-success').style.display = 'block';
       } else {
