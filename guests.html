@@ -154,17 +154,32 @@
   .btn-logout:hover { border-color: var(--pink); color: var(--pink); }
 
   /* ── Stats ── */
-  .stats {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 10px; margin-bottom: 24px;
+  .stats-row {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+    gap: 10px; margin-bottom: 18px;
     animation: fadeUp 0.7s 0.1s ease both;
   }
   .stat {
     background: var(--surface); border: 1.5px solid var(--border);
-    border-radius: var(--radius); padding: 14px 16px;
+    border-radius: var(--radius); padding: 16px 18px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.04); text-align: center;
   }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+  .stat-headcount {
+    background: linear-gradient(135deg, rgba(26,143,255,0.08), rgba(0,201,141,0.08));
+    border: 1.5px solid rgba(26,143,255,0.2);
+    border-radius: var(--radius); padding: 16px 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .stat-headcount-icon { font-size: 36px; line-height: 1; }
+  .stat-headcount-text {}
+  .stat-headcount-num {
+    font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900;
+    line-height: 1; color: var(--blue); margin-bottom: 2px;
+  }
+  .stat-headcount-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
   .stat-label { font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
   .stat-num.blue { color: var(--blue); }
   .stat-num.green { color: var(--green); }
@@ -172,22 +187,35 @@
   .stat-num.yellow { color: var(--yellow); }
   .stat-num.purple { color: var(--purple); }
 
-  /* ── Tabs ── */
-  .tabs {
-    display: flex; gap: 4px; margin-bottom: 20px;
+  /* ── Response bar ── */
+  .response-bar-wrap {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     animation: fadeUp 0.7s 0.15s ease both;
   }
-  .tab {
-    padding: 9px 20px; border-radius: 100px;
-    font-size: 13px; font-weight: 600; cursor: pointer;
-    border: 1.5px solid var(--border); background: var(--surface);
-    color: var(--muted); transition: all 0.2s;
+  .response-bar-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
   }
-  .tab.active {
-    background: linear-gradient(90deg, #1a8fff, #00c98d);
-    color: #fff; border-color: transparent;
-    box-shadow: 0 3px 14px rgba(26,143,255,0.3);
+  .response-bar {
+    height: 10px; border-radius: 100px; background: #eef4f8;
+    overflow: hidden; display: flex; margin-bottom: 10px;
   }
+  .response-bar-seg { height: 100%; transition: width 0.6s ease; }
+  .response-bar-seg.yes   { background: var(--green); }
+  .response-bar-seg.maybe { background: var(--yellow); }
+  .response-bar-seg.no    { background: var(--pink); }
+  .response-bar-seg.none  { background: #dde8ef; }
+  .response-bar-legend {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-weight: 500; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-dot.yes   { background: var(--green); }
+  .legend-dot.maybe { background: var(--yellow); }
+  .legend-dot.no    { background: var(--pink); }
+  .legend-dot.none  { background: #dde8ef; }
 
   /* ── Add guest form ── */
   .add-card {
@@ -243,8 +271,6 @@
     margin-bottom: 10px; flex-wrap: wrap; gap: 10px;
   }
   .list-title { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-  .btn-clear-all { font-size: 12px; color: var(--muted); font-weight: 600; background: none; border: none; cursor: pointer; opacity: 0.5; white-space: nowrap; }
-  .btn-clear-all:hover { opacity: 0.8; }
 
   .filters { display: flex; gap: 6px; flex-wrap: wrap; }
   .filter-btn {
@@ -444,12 +470,35 @@
   </div>
 
   <!-- STATS -->
-  <div class="stats">
+  <div class="stats-row">
+    <div class="stat-headcount">
+      <div class="stat-headcount-icon">🎉</div>
+      <div class="stat-headcount-text">
+        <div class="stat-headcount-num" id="stat-headcount">—</div>
+        <div class="stat-headcount-label">People Coming</div>
+      </div>
+    </div>
     <div class="stat"><div class="stat-num blue" id="stat-total">—</div><div class="stat-label">Invited</div></div>
     <div class="stat"><div class="stat-num green" id="stat-coming">—</div><div class="stat-label">✅ Coming</div></div>
     <div class="stat"><div class="stat-num pink" id="stat-cant">—</div><div class="stat-label">❌ Can't Make It</div></div>
     <div class="stat"><div class="stat-num yellow" id="stat-maybe">—</div><div class="stat-label">🤞 Maybe</div></div>
-    <div class="stat"><div class="stat-num purple" id="stat-no-reply">—</div><div class="stat-label">No Reply</div></div>
+  </div>
+
+  <!-- RESPONSE BAR -->
+  <div class="response-bar-wrap">
+    <p class="response-bar-label">Response Breakdown</p>
+    <div class="response-bar">
+      <div class="response-bar-seg yes"   id="bar-yes"   style="width:0%"></div>
+      <div class="response-bar-seg maybe" id="bar-maybe" style="width:0%"></div>
+      <div class="response-bar-seg no"    id="bar-no"    style="width:0%"></div>
+      <div class="response-bar-seg none"  id="bar-none"  style="width:100%"></div>
+    </div>
+    <div class="response-bar-legend">
+      <span class="legend-item"><span class="legend-dot yes"></span><span id="legend-yes">0 Coming</span></span>
+      <span class="legend-item"><span class="legend-dot maybe"></span><span id="legend-maybe">0 Maybe</span></span>
+      <span class="legend-item"><span class="legend-dot no"></span><span id="legend-no">0 Can't Make It</span></span>
+      <span class="legend-item"><span class="legend-dot none"></span><span id="legend-none">0 No Reply</span></span>
+    </div>
   </div>
 
   <!-- ADD GUEST -->
@@ -485,14 +534,13 @@
   <!-- FILTER + MASTER LIST -->
   <div class="list-header">
     <div class="filters">
-      <button class="filter-btn active" onclick="setFilter('all')">All</button>
-      <button class="filter-btn" onclick="setFilter('yes')">✅ Coming</button>
-      <button class="filter-btn" onclick="setFilter('no')">❌ Can't Make It</button>
-      <button class="filter-btn" onclick="setFilter('maybe')">🤞 Maybe</button>
-      <button class="filter-btn" onclick="setFilter('pending')">⏳ No Reply</button>
-      <button class="filter-btn" onclick="setFilter('invited')">📬 Invited</button>
+      <button class="filter-btn active" onclick="setFilter('all', event)">All</button>
+      <button class="filter-btn" onclick="setFilter('yes', event)">✅ Coming</button>
+      <button class="filter-btn" onclick="setFilter('no', event)">❌ Can't Make It</button>
+      <button class="filter-btn" onclick="setFilter('maybe', event)">🤞 Maybe</button>
+      <button class="filter-btn" onclick="setFilter('pending', event)">⏳ No Reply</button>
+      <button class="filter-btn" onclick="setFilter('invited', event)">📬 Invited</button>
     </div>
-    <button class="btn-clear-all" onclick="clearAll()">Clear Guest List</button>
   </div>
 
   <div class="guest-list" id="master-list">
@@ -548,10 +596,10 @@
   }
 
   // ── Filter ──
-  function setFilter(f) {
+  function setFilter(f, e) {
     activeFilter = f;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
+    if (e && e.target) e.target.classList.add('active');
     renderMaster();
   }
 
@@ -586,16 +634,6 @@
     document.getElementById('modal-guest-name').textContent = g.name;
     document.getElementById('modal-body').innerHTML = `This will permanently remove <span class="modal-name">${esc(g.name)}</span> from your guest list. This cannot be undone.`;
     document.getElementById('modal-confirm-btn').textContent = 'Remove Guest';
-    openModal();
-  }
-
-  function clearAll() {
-    if (!guests.length) return;
-    pendingClearAll = true;
-    pendingRemoveId = null;
-    document.getElementById('modal-title').textContent = 'Clear Entire Guest List?';
-    document.getElementById('modal-body').innerHTML = `This will permanently remove all <strong>${guests.length} guests</strong> from your list. This cannot be undone.`;
-    document.getElementById('modal-confirm-btn').textContent = 'Clear All Guests';
     openModal();
   }
 
@@ -714,11 +752,34 @@
   }
 
   function updateStats() {
-    document.getElementById('stat-total').textContent    = guests.length;
-    document.getElementById('stat-coming').textContent   = rsvps.filter(x => x.attending === 'yes').length;
-    document.getElementById('stat-cant').textContent     = rsvps.filter(x => x.attending === 'no').length;
-    document.getElementById('stat-maybe').textContent    = rsvps.filter(x => x.attending === 'maybe').length;
-    document.getElementById('stat-no-reply').textContent = Math.max(0, guests.length - rsvps.length);
+    const coming   = rsvps.filter(x => x.attending === 'yes');
+    const cant     = rsvps.filter(x => x.attending === 'no');
+    const maybe    = rsvps.filter(x => x.attending === 'maybe');
+    const noReply  = Math.max(0, guests.length - rsvps.length);
+    const total    = guests.length || 1;
+
+    const headcount = coming.reduce((sum, r) => sum + (parseInt(r.guests) || 1), 0);
+
+    document.getElementById('stat-headcount').textContent = headcount || '—';
+    document.getElementById('stat-total').textContent     = guests.length;
+    document.getElementById('stat-coming').textContent    = coming.length;
+    document.getElementById('stat-cant').textContent      = cant.length;
+    document.getElementById('stat-maybe').textContent     = maybe.length;
+
+    const yPct = Math.round((coming.length / total) * 100);
+    const mPct = Math.round((maybe.length  / total) * 100);
+    const nPct = Math.round((cant.length   / total) * 100);
+    const nonePct = Math.max(0, 100 - yPct - mPct - nPct);
+
+    document.getElementById('bar-yes').style.width   = yPct    + '%';
+    document.getElementById('bar-maybe').style.width = mPct    + '%';
+    document.getElementById('bar-no').style.width    = nPct    + '%';
+    document.getElementById('bar-none').style.width  = nonePct + '%';
+
+    document.getElementById('legend-yes').textContent   = coming.length  + ' Coming';
+    document.getElementById('legend-maybe').textContent = maybe.length   + ' Maybe';
+    document.getElementById('legend-no').textContent    = cant.length    + " Can't Make It";
+    document.getElementById('legend-none').textContent  = noReply        + ' No Reply';
   }
 
   function formatDate(ts) {
