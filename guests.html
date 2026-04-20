@@ -736,7 +736,7 @@
       const rsvpBadge  = g.rsvp ? (attendingLabel[g.rsvp.attending] || '') : '<span class="badge not-sent">⏳ No Reply</span>';
       const sentBadge  = g.type ? `<span class="badge ${g.sent ? 'sent' : 'not-sent'}">${g.sent ? '✓ Sent' : 'Not Sent'}</span>` : '';
       const guestCount = g.rsvp?.guests ? `<span style="font-size:12px;color:var(--muted)">👥 ${g.rsvp.guests}</span>` : '<span></span>';
-      const note       = g.rsvp?.message ? `<span style="font-size:12px;color:var(--muted);font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">"${esc(g.rsvp.message)}"</span>` : '<span></span>';
+      const note       = g.rsvp?.message ? `<span style="font-size:12px;color:var(--blue);font-style:italic;cursor:pointer;font-weight:500;" onclick="this.style.whiteSpace=this.style.whiteSpace==='normal'?'nowrap':'normal';this.style.overflow=this.style.overflow==='visible'?'hidden':'visible';" title="Click to expand">"${esc(g.rsvp.message)}"</span>` : '<span></span>';
       const sendBtn    = g.type ? `<a class="btn-send ${g.sent ? 'resend' : ''}" href="${buildSendLink(g)}" onclick="markSent(${g.id})" target="_blank">${g.sent ? 'Resend' : 'Send →'}</a>` : '';
       const removeBtn  = g.type ? `<button class="btn-remove" onclick="removeGuest(${g.id})">Remove</button>` : '';
       return `
