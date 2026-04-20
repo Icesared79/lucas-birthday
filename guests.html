@@ -174,13 +174,13 @@
   .stat-headcount-icon { font-size: 36px; line-height: 1; }
   .stat-headcount-text {}
   .stat-headcount-num {
-    font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900;
-    line-height: 1; color: var(--blue); margin-bottom: 2px;
+    font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900;
+    line-height: 1; color: var(--blue); margin-bottom: 3px;
   }
-  .stat-headcount-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .stat-headcount-label { font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
 
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
-  .stat-label { font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1; margin-bottom: 5px; }
+  .stat-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
   .stat-num.blue { color: var(--blue); }
   .stat-num.green { color: var(--green); }
   .stat-num.pink { color: var(--pink); }
@@ -195,7 +195,7 @@
     animation: fadeUp 0.7s 0.15s ease both;
   }
   .response-bar-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
   }
   .response-bar {
@@ -210,7 +210,7 @@
   .response-bar-legend {
     display: flex; gap: 16px; flex-wrap: wrap;
   }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-weight: 500; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); font-weight: 500; }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .legend-dot.yes   { background: var(--green); }
   .legend-dot.maybe { background: var(--yellow); }
@@ -225,17 +225,17 @@
     box-shadow: 0 2px 16px rgba(0,0,0,0.05);
     animation: fadeUp 0.7s 0.2s ease both;
   }
-  .add-card-title { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 14px; }
+  .add-card-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 14px; }
   .add-form { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end; }
   .field label {
-    display: block; font-size: 10px; font-weight: 700;
+    display: block; font-size: 11px; font-weight: 700;
     letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--muted); margin-bottom: 6px;
   }
   .field input, .field select {
     width: 100%; background: #f7fbff; border: 1.5px solid #ddeeff;
-    border-radius: 9px; padding: 10px 13px;
-    font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--dark);
+    border-radius: 9px; padding: 11px 14px;
+    font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--dark);
     outline: none; transition: border-color 0.2s, box-shadow 0.2s;
     appearance: none; -webkit-appearance: none;
   }
@@ -243,8 +243,8 @@
   .field input:focus, .field select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,143,255,0.1); }
   .btn-add {
     background: linear-gradient(90deg, #1a8fff, #00c98d); color: #fff;
-    border: none; border-radius: 9px; padding: 11px 20px;
-    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+    border: none; border-radius: 9px; padding: 12px 22px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700;
     letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
     white-space: nowrap; box-shadow: 0 3px 14px rgba(26,143,255,0.3);
     transition: opacity 0.2s, transform 0.15s;
@@ -255,13 +255,13 @@
   .invite-msg {
     background: linear-gradient(135deg, rgba(26,143,255,0.06), rgba(0,201,141,0.06));
     border: 1.5px solid rgba(26,143,255,0.15); border-radius: var(--radius);
-    padding: 18px 22px; margin-bottom: 20px; font-size: 13px; color: #2a4a5e;
+    padding: 18px 22px; margin-bottom: 20px; font-size: 14px; color: #2a4a5e;
     animation: fadeUp 0.7s 0.25s ease both;
   }
-  .invite-msg-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
+  .invite-msg-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
   .invite-msg textarea {
     width: 100%; background: none; border: none; outline: none;
-    font-family: 'Outfit', sans-serif; font-size: 13px; color: #2a4a5e;
+    font-family: 'Outfit', sans-serif; font-size: 14px; color: #2a4a5e;
     line-height: 1.75; resize: none; min-height: 80px;
   }
 
@@ -270,11 +270,11 @@
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 10px; flex-wrap: wrap; gap: 10px;
   }
-  .list-title { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .list-title { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
   .filters { display: flex; gap: 6px; flex-wrap: wrap; }
   .filter-btn {
-    padding: 7px 14px; border-radius: 100px; font-size: 12px; font-weight: 600;
+    padding: 9px 16px; border-radius: 100px; font-size: 13px; font-weight: 600;
     cursor: pointer; border: 1.5px solid var(--border); background: var(--surface);
     color: var(--muted); transition: all 0.18s; white-space: nowrap;
     font-family: 'Outfit', sans-serif;
@@ -298,12 +298,12 @@
     transition: box-shadow 0.2s;
   }
   .guest-row:hover { box-shadow: 0 4px 18px rgba(26,143,255,0.1); }
-  .guest-name { font-weight: 600; font-size: 14px; color: var(--dark); }
-  .guest-contact { font-size: 12px; color: var(--muted); word-break: break-all; }
+  .guest-name { font-weight: 600; font-size: 16px; color: var(--dark); }
+  .guest-contact { font-size: 13px; color: var(--muted); word-break: break-all; }
 
   .badge {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 5px 11px; border-radius: 100px;
     white-space: nowrap;
   }
   .badge.email { background: rgba(26,143,255,0.1); color: var(--blue); }
@@ -314,8 +314,8 @@
   .guest-actions { display: flex; gap: 6px; align-items: center; justify-content: flex-end; }
   .btn-send {
     background: linear-gradient(90deg, #1a8fff, #00c98d); color: #fff;
-    border: none; border-radius: 7px; padding: 6px 12px;
-    font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+    border: none; border-radius: 7px; padding: 7px 13px;
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
     cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block;
     transition: opacity 0.2s;
   }
@@ -323,7 +323,7 @@
   .btn-send.resend { background: rgba(0,201,141,0.15); color: var(--green); }
   .btn-remove {
     background: none; border: none; color: var(--muted); font-size: 13px;
-    cursor: pointer; line-height: 1; padding: 4px 8px; opacity: 0.35;
+    cursor: pointer; line-height: 1; padding: 6px 10px; opacity: 0.35;
     border: 1.5px solid var(--border); border-radius: 6px;
     transition: opacity 0.2s, color 0.2s, border-color 0.2s;
     font-family: 'Outfit', sans-serif; font-weight: 600;
@@ -735,8 +735,8 @@
     list.innerHTML = filtered.map(g => {
       const rsvpBadge  = g.rsvp ? (attendingLabel[g.rsvp.attending] || '') : '<span class="badge not-sent">⏳ No Reply</span>';
       const sentBadge  = g.type ? `<span class="badge ${g.sent ? 'sent' : 'not-sent'}">${g.sent ? '✓ Sent' : 'Not Sent'}</span>` : '';
-      const guestCount = g.rsvp?.guests ? `<span style="font-size:12px;color:var(--muted)">👥 ${g.rsvp.guests}</span>` : '<span></span>';
-      const note       = g.rsvp?.message ? `<span style="font-size:12px;color:var(--blue);font-style:italic;cursor:pointer;font-weight:500;" onclick="this.style.whiteSpace=this.style.whiteSpace==='normal'?'nowrap':'normal';this.style.overflow=this.style.overflow==='visible'?'hidden':'visible';" title="Click to expand">"${esc(g.rsvp.message)}"</span>` : '<span></span>';
+      const guestCount = g.rsvp?.guests ? `<span style="font-size:13px;color:var(--muted)">👥 ${g.rsvp.guests}</span>` : '<span></span>';
+      const note       = g.rsvp?.message ? `<span style="font-size:13px;color:var(--blue);font-style:italic;cursor:pointer;font-weight:500;" onclick="this.style.whiteSpace=this.style.whiteSpace==='normal'?'nowrap':'normal';this.style.overflow=this.style.overflow==='visible'?'hidden':'visible';" title="Click to expand">"${esc(g.rsvp.message)}"</span>` : '<span></span>';
       const sendBtn    = g.type ? `<a class="btn-send ${g.sent ? 'resend' : ''}" href="${buildSendLink(g)}" onclick="markSent(${g.id})" target="_blank">${g.sent ? 'Resend' : 'Send →'}</a>` : '';
       const removeBtn  = g.type ? `<button class="btn-remove" onclick="removeGuest(${g.id})">Remove</button>` : '';
       return `
