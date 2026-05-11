@@ -437,7 +437,7 @@
 <!-- ── CONFIRMATION MODAL ── -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <div class="modal-icon">⚠️</div>
+    <div class="modal-icon">⚠�</div>
     <p class="modal-title" id="modal-title">Remove Guest?</p>
     <p class="modal-body" id="modal-body">This will permanently remove <span class="modal-name" id="modal-guest-name"></span> from your guest list. This cannot be undone.</p>
     <p class="modal-confirm-label">Type <strong>REMOVE</strong> to confirm</p>
@@ -480,7 +480,7 @@
     </div>
     <div class="stat"><div class="stat-num blue" id="stat-total">—</div><div class="stat-label">Invited</div></div>
     <div class="stat"><div class="stat-num green" id="stat-coming">—</div><div class="stat-label">✅ Coming</div></div>
-    <div class="stat"><div class="stat-num pink" id="stat-cant">—</div><div class="stat-label">❌ Can't Make It</div></div>
+    <div class="stat"><div class="stat-num pink" id="stat-cant">—</div><div class="stat-label">� Can't Make It</div></div>
     <div class="stat"><div class="stat-num yellow" id="stat-maybe">—</div><div class="stat-label">🤞 Maybe</div></div>
   </div>
 
@@ -536,9 +536,9 @@
     <div class="filters">
       <button class="filter-btn active" onclick="setFilter('all', event)">All</button>
       <button class="filter-btn" onclick="setFilter('yes', event)">✅ Coming</button>
-      <button class="filter-btn" onclick="setFilter('no', event)">❌ Can't Make It</button>
+      <button class="filter-btn" onclick="setFilter('no', event)">� Can't Make It</button>
       <button class="filter-btn" onclick="setFilter('maybe', event)">🤞 Maybe</button>
-      <button class="filter-btn" onclick="setFilter('pending', event)">⏳ No Reply</button>
+      <button class="filter-btn" onclick="setFilter('pending', event)">� No Reply</button>
       <button class="filter-btn" onclick="setFilter('invited', event)">📬 Invited</button>
     </div>
   </div>
@@ -552,7 +552,7 @@
 
 <script>
   const SUPABASE_URL  = 'https://urxfibjfbzkcnxhyynpb.supabase.co';
-  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVyeGZpYmpmYnprY254aHl5bnBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxNzEzNTAsImV4cCI6MjA4ODc0NzM1MH0.lSp8glpzDJXN71n4Cpa_MYj-Cp4SRqrJGUugtvGazIs';
+  const SUPABASE_ANON = 'sb_publishable_TnIfgVVPr8BK_EYTbyaO1w_auirK9uP';
   const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
   const GUEST_KEY = 'lucas_birthday_guests_v2';
@@ -722,18 +722,18 @@
       return;
     }
     if (!filtered.length) {
-      list.innerHTML = `<div class="empty-state"><span class="empty-icon">🔍</span><p>No guests match this filter.</p></div>`;
+      list.innerHTML = `<div class="empty-state"><span class="empty-icon">�</span><p>No guests match this filter.</p></div>`;
       return;
     }
 
     const attendingLabel = {
       yes:   '<span class="badge yes">✅ Coming</span>',
-      no:    '<span class="badge no">❌ Can\'t Make It</span>',
+      no:    '<span class="badge no">� Can\'t Make It</span>',
       maybe: '<span class="badge maybe">🤞 Maybe</span>'
     };
 
     list.innerHTML = filtered.map(g => {
-      const rsvpBadge  = g.rsvp ? (attendingLabel[g.rsvp.attending] || '') : '<span class="badge not-sent">⏳ No Reply</span>';
+      const rsvpBadge  = g.rsvp ? (attendingLabel[g.rsvp.attending] || '') : '<span class="badge not-sent">� No Reply</span>';
       const sentBadge  = g.type ? `<span class="badge ${g.sent ? 'sent' : 'not-sent'}">${g.sent ? '✓ Sent' : 'Not Sent'}</span>` : '';
       const guestCount = g.rsvp?.guests ? `<span style="font-size:13px;color:var(--muted)">👥 ${g.rsvp.guests}</span>` : '<span></span>';
       const note       = g.rsvp?.message ? `<span style="font-size:13px;color:var(--blue);font-style:italic;cursor:pointer;font-weight:500;" onclick="this.style.whiteSpace=this.style.whiteSpace==='normal'?'nowrap':'normal';this.style.overflow=this.style.overflow==='visible'?'hidden':'visible';" title="Click to expand">"${esc(g.rsvp.message)}"</span>` : '<span></span>';
