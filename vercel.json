@@ -5,6 +5,7 @@
     { "src": "favicon.ico", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/(.*)", "headers": { "X-Content-Type-Options": "nosniff", "Referrer-Policy": "strict-origin-when-cross-origin", "X-Frame-Options": "SAMEORIGIN" }, "continue": true },
     { "src": "/favicon.ico", "dest": "/favicon.ico" },
     { "src": "/guests", "dest": "/guests.html" },
     { "src": "/guests.html", "dest": "/guests.html" },
